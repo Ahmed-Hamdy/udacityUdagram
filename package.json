@@ -1,0 +1,17 @@
+{
+    "scripts": {
+        "frontend:install": "cd ./udagram/udagram-frontend && yarn && cd .. && cd ..",
+        "frontend:start": "cd ./udagram/udagram-frontend && yarn start && cd .. && cd ..",
+        "frontend:build": "cd ./udagram/udagram-frontend && yarn build && cd .. && cd ..",
+        "frontend:test": "cd ./udagram/udagram-frontend && yarn test && cd .. && cd ..",
+        "frontend:e2e": "cd ./udagram/udagram-frontend && yarn e2e && cd .. && cd ..",
+        "frontend:lint": "cd ./udagram/udagram-frontend && yarn lint && cd .. && cd ..",
+        "frontend:deploy": "cd ./udagram/udagram-frontend && yarn deploy && cd .. && cd ..",
+        "api:install": "cd ./udagram/udagram-api && npm install  && cd .. && cd ..",
+        "api:build": "cd ./udagram/udagram-api && npm run build && cd .. && cd ..",
+        "api:start": "cd ./udagram/udagram-api && npm run dev && cd .. && cd ..",
+        "api:deploy": "cd ./udagram/udagram-api && npm run deploy && cd .. && cd ..",
+        "api:prod": "cd ./udagram/udagram-api && npm run prod && cd .. && cd ..",
+        "deploy": "npm run api:deploy && npm run frontend:deploy"
+    }
+}
