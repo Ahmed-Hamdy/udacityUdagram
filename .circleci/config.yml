@@ -69,7 +69,7 @@ jobs:
       - run:
           name: Configure AWS Default Region
           command: |
-            aws configure set region ${AWS_DEFAULT_REGION} --profile default
+            aws configure set region ${AWS_DEFAULT_REGION} 
       - run:
           name: Deploy App
           # TODO: Install, build, deploy in both apps
