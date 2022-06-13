@@ -67,9 +67,9 @@ jobs:
           command: |
             aws configure set aws_secret_access_key ${AWS_SECRET_ACCESS_KEY} --profile default
       - run:
-          name: Configure AWS Secret Default Region
+          name: Configure AWS Default Region
           command: |
-            aws configure set default.region ${AWS_DEFAULT_REGION} --profile default
+            aws configure set region ${AWS_DEFAULT_REGION} --profile default
       - run:
           name: Deploy App
           # TODO: Install, build, deploy in both apps
