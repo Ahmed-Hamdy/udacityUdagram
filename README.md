@@ -12,11 +12,72 @@ You will then register for a free account on CircleCi and connect your Github ac
 
 The project will also include writing documentation and runbooks covering the operations of the deployment process. Those runbooks will serve as a way to communicate with future developers and anybody involved in diagnosing outages of the Full-Stack application.
 
+# local building
+    - install node package manager for both the frontend and the server using command 
+        * npm install //for the server
+        * yarn //for the frontend
+    - create local postgres database and pass its enviroment variabels to the server 
+    - start the server in production via command 
+        * npm run rod
+    - start the frontend web via 
+        * yarn start
+    - then you can access opne the frontend web page therough link : 
+        * http://localhost:${port}/api/v0
+    - you can regeister to the web site using Register button 
+
+# Cloud deployment
+    - download and istalol  AWS CLI and EB CLI
+    - create AWS IAM account and acces
+    - add AWS IAM (Access key ID) and (Secret access key) via command 
+        * aws configure
+### Create Postgres DB
+    - on AWS RDS service create Postgres dtabase with the following porperties 
+        * port 5432
+### Create an Elastic Beanstalk environment
+    - create elastic beanstalk repository with command
+        * eb init udagram-api --platform node.js --region us-east-1
+    - create an environment running a sample application with name udagarm-api-dev using command
+        * eb create --sample udagarm-api-dev
+    - make sure we are using it by running in rootDir of our server
+        * eb use udagram-api-dev
+    - add dtabase enviroment variabels to EB enviroment
+### S3 Bucket
+    - on AWS S3 service ceate new buckt with following characteristics
+        * public access
+        * add the follwing policy to the bucket 
+            {
+                "Version": "2012-10-17",
+                "Statement": [
+                    {
+                        "Sid": "PublicReadGetObject",
+                        "Effect": "Allow",
+                        "Principal": "*",
+                        "Action": [
+                            "s3:GetObject"
+                        ],
+                        "Resource": [
+                            "arn:aws:s3:::${Bucket ARN}/*"
+                        ]
+                    }
+                ]
+            }
+        * configure static website hosting
+        
+### Pipeline 
+    - create CircleCI configuration file in the root of the project and fill it with the pipeline process 
+    - Create GitHub repository
+    - upload the project files to the repository
+    - login on circle ci sebsite using your github account
+    - in projects dashboard setup a project
+    - add aws enviroment variabels to circleci project
+    - circleci will excute asll pipeline process that set in the CircleCI configuration file     
+
 # Udagram
 
 This application is provided to you as an alternative starter project if you do not wish to host your own code done in the previous courses of this nanodegree. The udagram application is a fairly simple application that includes all the major components of a Full-Stack web application.
+###### To acees the front-end web page use the following link:
 
-
+    http://udagram-frontend-udacity.s3-website-us-east-1.amazonaws.com/home
 
 ### Dependencies
 
@@ -37,8 +98,8 @@ This application is provided to you as an alternative starter project if you do 
 
 Provision the necessary AWS services needed for running the application:
 
-1. In AWS, provision a publicly available RDS database running Postgres. <Place holder for link to classroom article>
-1. In AWS, provision a s3 bucket for hosting the uploaded files. <Place holder for tlink to classroom article>
+1. In AWS, provision a publicly available RDS database running Postgres. 
+1. In AWS, provision a s3 bucket for hosting the uploaded files. 
 1. Export the ENV variables needed or use a package like [dotnev](https://www.npmjs.com/package/dotenv)/.
 1. From the root of the repo, navigate udagram-api folder `cd starter/udagram-api` to install the node_modules `npm install`. After installation is done start the api in dev mode with `npm run dev`.
 1. Without closing the terminal in step 1, navigate to the udagram-frontend `cd starter/udagram-frontend` to intall the node_modules `npm install`. After installation is done start the api in dev mode with `npm run start`.
@@ -47,7 +108,7 @@ Provision the necessary AWS services needed for running the application:
 
 This project contains two different test suite: unit tests and End-To-End tests(e2e). Follow these steps to run the tests.
 
-1. `cd starter/udagram-frontend`
+1. `cd udagram/udagram-frontend`
 1. `npm run test`
 1. `npm run e2e`
 
