@@ -88,7 +88,7 @@ This project contains two different test suite: unit tests and End-To-End tests(
 
 # To acees the front-end web page use the following link:
 
-    http://udagram-frontend-udacity.s3-website-us-east-1.amazonaws.com/home
+    http://udagram-frontend-udacity.s3-website-us-east-1.amazonaws.com
 
 ## Built With
 
